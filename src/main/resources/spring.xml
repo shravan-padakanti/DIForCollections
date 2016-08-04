@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<bean id="coll" class="domain.Collection1">
+		<!--   setting list, which is internally converted to arraylist. If we need to use other list implementation class,
+		we need to use xml schema(xmlns) and use <util:list list-class="implementation class name".> tag-->
+		<property name="colors">
+			<list>
+				<value>orange</value>
+				<value>blue</value>
+				<value>black</value>
+				<value>white</value>
+			</list>
+		</property>
+		
+		<!-- Set will be by default converted to linked hash set -->
+		<property name="cricketers">
+			<set>
+				<value>sachin</value>
+				<value>sehawag</value>
+			</set>
+		</property>
+		
+		<!-- Set will be by default converted to linked hash map -->
+		<property name="country_capital">
+			<map>
+				<entry key="India" value="New Delhi"/>
+				<entry key="US" value="Washington"/>
+			</map>
+		</property>
+		
+		<!--   when we need to inject collections other than default types for 
+		list, set and map implementing classes, use util:list, util:set, util:map
+		xml schema
+		<property name="cricketers">
+			<util:list list-class ="java.util.vector">
+				<value>orange</value>
+				<value>blue</value>
+				<value>black</value>
+				<value>white</value>
+			</util:list>
+		</property> -->
+		
+		<!-- for setting property type tree collections we use props tag with prop child tag
+		<property name="">
+			<props>
+				<prop key="key_name">value</prop>
+				<prop key="key_name">value</prop>
+				<prop key="key_name">value</prop>
+			</props>
+		</property>
+		 -->
+	</bean>
+</beans>
